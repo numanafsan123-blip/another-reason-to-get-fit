@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Body Fat % &amp; Lean Body Mass Calculator | Another Reason to Get Fit</title>
+  <meta name="description" content="Calculate your estimated body fat percentage, fat mass, and lean body mass (LBM) using the validated US Navy Circumference Method.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header class="site-header">
+    <div class="container navbar">
+      <a href="../index.html" class="brand-logo">
+        <span class="brand-icon">R</span>
+        <span>Another Reason to Get Fit</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="../fitness/index.html" class="nav-link">Fitness</a></li>
+          <li><a href="../diet/index.html" class="nav-link">Diet</a></li>
+          <li><a href="index.html" class="nav-link active">Calculators</a></li>
+          <li><a href="../about.html" class="nav-link">About</a></li>
+          <li><a href="../contact.html" class="nav-link">Contact</a></li>
+          <li><a href="calorie-calculator.html" class="btn btn-outline btn-sm">Calorie Tool</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Header / Breadcrumb -->
+  <section class="section" style="padding-top: 2rem; padding-bottom: 1rem;">
+    <div class="container container-narrow">
+      <div style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 0.75rem;">
+        <a href="../index.html">Home</a> &gt; <a href="index.html">Calculators</a> &gt; <span>Body Fat Calculator</span>
+      </div>
+      <h1 class="section-title">Body Fat % &amp; Lean Body Mass (LBM) Calculator</h1>
+      <p class="section-subtitle">
+        Assess your physical composition without expensive scans. The standardized US Navy method uses anthropometric tape measurements to calculate fat mass vs. metabolically active lean tissue.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Calculator Section -->
+  <main class="section" style="padding-top: 0;">
+    <div class="container container-narrow">
+
+      <div class="calc-card">
+        <form id="bodyFatForm" novalidate>
+          
+          <!-- Gender Selection -->
+          <div class="form-group">
+            <label class="form-label">Biological Sex</label>
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" name="bfGender" value="male" checked> Male
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="bfGender" value="female"> Female
+              </label>
+            </div>
+            <div class="form-hint">Females require a hip measurement due to biological fat distribution patterns.</div>
+          </div>
+
+          <!-- Height and Weight Grid -->
+          <div class="grid-2" style="margin-bottom: 1rem;">
+            <div class="form-group">
+              <label for="bfHeight" class="form-label">Height (cm)</label>
+              <input type="number" id="bfHeight" class="form-control" placeholder="e.g. 175" min="120" max="230" required>
+              <div class="form-error"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="bfWeight" class="form-label">Weight (kg)</label>
+              <input type="number" id="bfWeight" class="form-control" placeholder="e.g. 72" min="35" max="200" step="0.1" required>
+              <div class="form-error"></div>
+            </div>
+          </div>
+
+          <!-- Circumferences Grid -->
+          <div class="grid-2" style="margin-bottom: 1rem;">
+            <div class="form-group">
+              <label for="bfNeck" class="form-label">Neck Circumference (cm)</label>
+              <input type="number" id="bfNeck" class="form-control" placeholder="e.g. 38" min="20" max="60" step="0.5" required>
+              <div class="form-hint">Measure around the narrowest point of the neck below the Adam's apple.</div>
+              <div class="form-error"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="bfWaist" class="form-label">Waist Circumference (cm)</label>
+              <input type="number" id="bfWaist" class="form-control" placeholder="e.g. 84" min="45" max="160" step="0.5" required>
+              <div class="form-hint">Men: Measure horizontally at navel level. Women: Measure at the narrowest waistline.</div>
+              <div class="form-error"></div>
+            </div>
+          </div>
+
+          <!-- Female Specific Hip Circumference (Conditional) -->
+          <div id="femaleHipGroup" class="form-group" style="display: none; margin-bottom: 1.5rem;">
+            <label for="bfHip" class="form-label">Hip Circumference (cm) - Females Only</label>
+            <input type="number" id="bfHip" class="form-control" placeholder="e.g. 96" min="50" max="170" step="0.5">
+            <div class="form-hint">Measure horizontally across the widest point of the buttocks.</div>
+            <div class="form-error"></div>
+          </div>
+
+          <!-- Action Button -->
+          <div style="margin-top: 1.5rem;">
+            <button type="submit" class="btn btn-accent btn-block" style="padding: 1rem; font-size: 1.05rem;">
+              Calculate Body Composition &amp; LBM
+            </button>
+          </div>
+
+        </form>
+
+        <!-- Dynamic Results Panel -->
+        <div id="bodyFatResults" class="results-panel" aria-live="polite">
+          <h2 style="font-size: 1.3rem; margin-bottom: 0.25rem;">Estimated Body Composition Results</h2>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+            Based on the standardized US Navy Circumference Method:
+          </p>
+
+          <div class="results-grid">
+            <div class="metric-box" style="border-color: var(--accent); background-color: var(--accent-light);">
+              <div class="metric-label" style="color: var(--accent-hover);">Body Fat Percentage</div>
+              <div id="resBF" class="metric-val" style="color: var(--accent-hover);">0%</div>
+              <div id="resCategory" class="metric-sub" style="font-weight: 700; color: var(--text-main);">Category</div>
+            </div>
+
+            <div class="metric-box">
+              <div class="metric-label">Estimated Fat Mass</div>
+              <div id="resFatMass" class="metric-val">0 kg</div>
+              <div class="metric-sub">Adipose storage tissue</div>
+            </div>
+
+            <div class="metric-box" style="border-color: var(--primary); background-color: var(--primary-light);">
+              <div class="metric-label" style="color: var(--primary-dark);">Lean Body Mass (LBM)</div>
+              <div id="resLBM" class="metric-val" style="color: var(--primary-dark);">0 kg</div>
+              <div class="metric-sub">Muscle, bone, organs &amp; water</div>
+            </div>
+          </div>
+
+          <div class="disclaimer-box" style="margin-top: 1.5rem;">
+            <strong>Why Lean Body Mass Matters:</strong> Scale weight alone does not differentiate between water, muscle, and body fat. A lifter who gains 2 kg while lowering body fat has gained high-value contractile muscle tissue. Use this measurement every 3–4 weeks under consistent morning fasting conditions.
+          </div>
+
+          <div style="margin-top: 1.5rem; text-align: center;">
+            <a href="../fitness/progressive-overload.html" class="btn btn-outline btn-sm">
+              Learn How Progressive Overload Builds Lean Muscle Mass &rarr;
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Formula & Reference Tables -->
+      <section class="section" style="padding-bottom: 1rem;">
+        <h2 style="font-size: 1.4rem; margin-bottom: 1rem;">The US Navy Circumference Method Explained</h2>
+        <p style="margin-bottom: 1rem;">
+          Developed by researchers Hodgdon and Beckett at the Naval Health Research Center in 1984, this logarithmic formula correlates circumferences with hydrostatic underwater weighing.
+        </p>
+        <div class="table-wrapper">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Classification</th>
+                <th>Men Body Fat %</th>
+                <th>Women Body Fat %</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Essential Fat</strong></td>
+                <td>2% – 5%</td>
+                <td>10% – 13%</td>
+                <td>Physiological minimum necessary for basic survival.</td>
+              </tr>
+              <tr>
+                <td><strong>Athletic</strong></td>
+                <td>6% – 13%</td>
+                <td>14% – 20%</td>
+                <td>High muscle definition; common in trained athletes.</td>
+              </tr>
+              <tr>
+                <td><strong>Fitness</strong></td>
+                <td>14% – 17%</td>
+                <td>21% – 24%</td>
+                <td>Healthy, sustainable athletic aesthetic with good energy.</td>
+              </tr>
+              <tr>
+                <td><strong>Average</strong></td>
+                <td>18% – 24%</td>
+                <td>25% – 31%</td>
+                <td>Normal population range with moderate physical activity.</td>
+              </tr>
+              <tr>
+                <td><strong>Above Average</strong></td>
+                <td>25%+</td>
+                <td>32%+</td>
+                <td>Elevated fat storage; potential benefit from a moderate calorie deficit.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>Another Reason to Get Fit</h3>
+          <p>An academic, evidence-grounded web project created for MKT901 – Web Marketing. Focused on progressive resistance training, rest intervals, and everyday Indian nutrition.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../fitness/index.html">Fitness Guides</a></li>
+            <li><a href="../diet/index.html">Diet &amp; Nutrition</a></li>
+            <li><a href="index.html">Calculators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Tools</h4>
+          <ul class="footer-links">
+            <li><a href="calorie-calculator.html">Calorie Calculator</a></li>
+            <li><a href="body-fat-calculator.html">Body Fat % Calculator</a></li>
+            <li><a href="../fitness/rest-between-sets.html">Rest Intervals Guide</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Academic Info</h4>
+          <ul class="footer-links">
+            <li><a href="../about.html">Project Context</a></li>
+            <li><a href="../contact.html">Contact Form</a></li>
+            <li><a href="../disclaimer.html">Disclaimer</a></li>
+            <li><a href="../sitemap.xml">Sitemap</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Another Reason to Get Fit. Academic Task 1 Submission.</p>
+        <p>Mathematical approximation only. Does not replace clinical bone density or hydrostatic assessment.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/analytics.js"></script>
+  <script src="../assets/js/calculators.js"></script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fitness & Nutrition Calculators | Another Reason to Get Fit</title>
+  <meta name="description" content="Calculate your daily calorie needs, TDEE, and estimated body fat percentage with our private, client-side fitness calculators.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header class="site-header">
+    <div class="container navbar">
+      <a href="../index.html" class="brand-logo">
+        <span class="brand-icon">R</span>
+        <span>Another Reason to Get Fit</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="../fitness/index.html" class="nav-link">Fitness</a></li>
+          <li><a href="../diet/index.html" class="nav-link">Diet</a></li>
+          <li><a href="index.html" class="nav-link active">Calculators</a></li>
+          <li><a href="../about.html" class="nav-link">About</a></li>
+          <li><a href="../contact.html" class="nav-link">Contact</a></li>
+          <li><a href="calorie-calculator.html" class="nav-cta">Estimate Calories</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Hero -->
+  <section class="hero">
+    <div class="container hero-content">
+      <span class="badge badge-primary">Client-Side Mathematical Tools</span>
+      <h1 class="hero-title">Fitness &amp; Nutrition Calculators</h1>
+      <p class="hero-desc">
+        Take the guesswork out of nutrition and physical progression. Our tools run 100% in your browser—no sign-ups, no data storage, and zero telemetry on your personal metrics.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Calculators Overview -->
+  <main class="section">
+    <div class="container">
+      <div class="grid-2">
+        
+        <!-- Calorie Calculator Card -->
+        <div class="card">
+          <div class="card-img-wrap">
+            <img src="../assets/images/diet/calories.svg" alt="Daily Calorie Needs Calculator" loading="lazy" width="600" height="338">
+          </div>
+          <span class="badge badge-primary" style="width: fit-content;">Energy Balance</span>
+          <h2 class="card-title">Daily Calorie &amp; TDEE Calculator</h2>
+          <p class="card-text">
+            Estimate your Basal Metabolic Rate (BMR) and Total Daily Energy Expenditure (TDEE) based on the clinically validated Mifflin-St Jeor equation. Get realistic calorie targets for fat loss, maintenance, or muscle gain with macro breakdowns.
+          </p>
+          <div class="card-footer">
+            <span style="font-size: 0.85rem; color: var(--text-light);">Formula: Mifflin-St Jeor</span>
+            <a href="calorie-calculator.html" class="btn btn-primary btn-sm">Open Calorie Tool &rarr;</a>
+          </div>
+        </div>
+
+        <!-- Body Fat Calculator Card -->
+        <div class="card">
+          <div class="card-img-wrap">
+            <img src="../assets/images/common/calc-banner.svg" alt="Body Fat and Lean Body Mass Calculator" loading="lazy" width="600" height="338">
+          </div>
+          <span class="badge badge-accent" style="width: fit-content;">Body Composition</span>
+          <h2 class="card-title">Body Fat % &amp; Lean Mass (LBM)</h2>
+          <p class="card-text">
+            Estimate your body fat percentage, total fat mass, and lean body mass using the standardized US Navy Circumference Method. Requires only a simple measuring tape with no expensive DEXA scans.
+          </p>
+          <div class="card-footer">
+            <span style="font-size: 0.85rem; color: var(--text-light);">Formula: US Navy Hodgdon</span>
+            <a href="body-fat-calculator.html" class="btn btn-accent btn-sm">Open Body Fat Tool &rarr;</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Educational Guidance Callout -->
+      <div class="callout callout-accent" style="margin-top: 3rem;">
+        <h3 class="callout-title">Understanding Estimations vs. Clinical Diagnostics</h3>
+        <p>
+          Every mathematical formula used in exercise science yields an approximation. Your metabolic rate adapts dynamically based on sleep, hormone balance, non-exercise physical activity (NEAT), and nutritional adherence. Use these calculators as a structured starting line, observe body weight trends over 2–3 weeks, and adjust gradually.
+        </p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>Another Reason to Get Fit</h3>
+          <p>An academic, evidence-grounded web project created for MKT901 – Web Marketing. Focused on progressive resistance training, rest intervals, and everyday Indian nutrition.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../fitness/index.html">Fitness Guides</a></li>
+            <li><a href="../diet/index.html">Diet &amp; Nutrition</a></li>
+            <li><a href="index.html">Calculators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Tools</h4>
+          <ul class="footer-links">
+            <li><a href="calorie-calculator.html">Calorie Calculator</a></li>
+            <li><a href="body-fat-calculator.html">Body Fat % Calculator</a></li>
+            <li><a href="../fitness/rest-between-sets.html">Rest Intervals Guide</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Academic Info</h4>
+          <ul class="footer-links">
+            <li><a href="../about.html">Project Context</a></li>
+            <li><a href="../contact.html">Contact Form</a></li>
+            <li><a href="../disclaimer.html">Disclaimer</a></li>
+            <li><a href="../sitemap.xml">Sitemap</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Another Reason to Get Fit. Academic Task 1 Submission.</p>
+        <p>Zero tracking of personal health data. Analytics solely records aggregated usage events.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/analytics.js"></script>
+</body>
+</html>

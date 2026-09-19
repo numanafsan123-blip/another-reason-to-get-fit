@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="100%" height="100%">
+  <defs>
+    <linearGradient id="grad_diet_calories" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#065f46" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#grad_diet_calories)" />
+  <circle cx="1000" cy="337" r="260" fill="white" opacity="0.05" />
+  <circle cx="1100" cy="200" r="140" fill="white" opacity="0.04" />
+  
+  <g transform="translate(100, 240)">
+    <rect x="0" y="0" width="220" height="38" rx="19" fill="white" opacity="0.15" />
+    <text x="20" y="24" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="700" letter-spacing="1">ENERGY BALANCE</text>
+    
+    <text x="0" y="100" fill="#ffffff" font-family="system-ui, sans-serif" font-size="44" font-weight="800">Demystifying Daily Calories</text>
+    <text x="0" y="160" fill="#cbd5e1" font-family="system-ui, sans-serif" font-size="22" font-weight="400">BMR, Activity Multipliers & TDEE Explained</text>
+  </g>
+</svg>

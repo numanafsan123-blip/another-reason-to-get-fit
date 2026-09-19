@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact &amp; Feedback | Another Reason to Get Fit</title>
+  <meta name="description" content="Submit inquiries, educational feedback, or academic questions regarding Another Reason to Get Fit.">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Site Navigation Header -->
+  <header class="site-header">
+    <div class="container navbar">
+      <a href="index.html" class="brand-logo">
+        <span class="brand-icon">R</span>
+        <span>Another Reason to Get Fit</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="fitness/index.html" class="nav-link">Fitness</a></li>
+          <li><a href="diet/index.html" class="nav-link">Diet</a></li>
+          <li><a href="calculators/index.html" class="nav-link">Calculators</a></li>
+          <li><a href="about.html" class="nav-link">About</a></li>
+          <li><a href="contact.html" class="nav-link active">Contact</a></li>
+          <li><a href="calculators/calorie-calculator.html" class="nav-cta">Estimate Calories</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section class="section" style="padding-top: 2.5rem; padding-bottom: 1.5rem;">
+    <div class="container container-narrow">
+      <span class="badge badge-primary">Academic Inquiries &amp; Feedback</span>
+      <h1 class="section-title">Contact &amp; Project Feedback</h1>
+      <p class="section-subtitle">
+        Have a question about our workout progression tables, rest interval calculations, or Indian nutritional guidelines? Submit your inquiry below.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="section" style="padding-top: 0;">
+    <div class="container container-narrow">
+      
+      <div class="calc-card">
+        <div id="contactStatus" style="display: none; margin-bottom: 1.5rem;"></div>
+
+        <form id="contactForm" novalidate>
+          
+          <div class="form-group">
+            <label for="contactName" class="form-label">Full Name</label>
+            <input type="text" id="contactName" class="form-control" placeholder="Your full name" required>
+            <div class="form-error"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="contactEmail" class="form-label">Email Address</label>
+            <input type="email" id="contactEmail" class="form-control" placeholder="name@domain.com" required>
+            <div class="form-error"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="contactTopic" class="form-label">Inquiry Category</label>
+            <select id="contactTopic" class="form-control">
+              <option value="fitness_pathway">Workout Progression &amp; Rest Intervals</option>
+              <option value="diet_nutrition">Indian Nutrition &amp; Budget Meal Guides</option>
+              <option value="calculators">Calculators &amp; Formulas</option>
+              <option value="academic_task">MKT901 Academic Task 1 Feedback</option>
+              <option value="other">Other General Inquiry</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="contactMessage" class="form-label">Message / Feedback</label>
+            <textarea id="contactMessage" rows="5" class="form-control" placeholder="Write your question or feedback here..." required></textarea>
+            <div class="form-error"></div>
+          </div>
+
+          <div style="margin-top: 1.5rem;">
+            <button type="submit" class="btn btn-primary btn-block" style="padding: 1rem; font-size: 1rem;">
+              Submit Inquiry &rarr;
+            </button>
+          </div>
+
+        </form>
+      </div>
+
+      <div class="callout" style="margin-top: 2.5rem;">
+        <h3 class="callout-title">Academic Notice</h3>
+        <p>
+          Form submissions trigger a custom Google Analytics conversion event (`contact_submit`) to measure user communication intent as part of MKT901 Web Marketing. No personal data is sold or stored on external marketing servers.
+        </p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>Another Reason to Get Fit</h3>
+          <p>An academic, evidence-grounded web project created for MKT901 – Web Marketing. Focused on progressive resistance training, rest intervals, and everyday Indian nutrition.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="fitness/index.html">Fitness Guides</a></li>
+            <li><a href="diet/index.html">Diet &amp; Nutrition</a></li>
+            <li><a href="calculators/index.html">Calculators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Tools</h4>
+          <ul class="footer-links">
+            <li><a href="calculators/calorie-calculator.html">Calorie Calculator</a></li>
+            <li><a href="calculators/body-fat-calculator.html">Body Fat % Calculator</a></li>
+            <li><a href="fitness/rest-between-sets.html">Rest Intervals Guide</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Academic Info</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">Project Context</a></li>
+            <li><a href="contact.html">Contact Form</a></li>
+            <li><a href="disclaimer.html">Disclaimer</a></li>
+            <li><a href="sitemap.xml">Sitemap</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Another Reason to Get Fit. Academic Task 1 Submission.</p>
+        <p>Created for MKT901 under the guidance of Mr. Abhishek Sahai.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/analytics.js"></script>
+</body>
+</html>

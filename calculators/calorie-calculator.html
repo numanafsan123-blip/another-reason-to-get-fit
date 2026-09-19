@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Calorie &amp; TDEE Calculator | Another Reason to Get Fit</title>
+  <meta name="description" content="Calculate your daily calorie expenditure (TDEE), Basal Metabolic Rate (BMR), and macronutrient targets using the scientific Mifflin-St Jeor formula.">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Header -->
+  <header class="site-header">
+    <div class="container navbar">
+      <a href="../index.html" class="brand-logo">
+        <span class="brand-icon">R</span>
+        <span>Another Reason to Get Fit</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="../fitness/index.html" class="nav-link">Fitness</a></li>
+          <li><a href="../diet/index.html" class="nav-link">Diet</a></li>
+          <li><a href="index.html" class="nav-link active">Calculators</a></li>
+          <li><a href="../about.html" class="nav-link">About</a></li>
+          <li><a href="../contact.html" class="nav-link">Contact</a></li>
+          <li><a href="body-fat-calculator.html" class="btn btn-outline btn-sm">Body Fat % Tool</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Header / Breadcrumb -->
+  <section class="section" style="padding-top: 2rem; padding-bottom: 1rem;">
+    <div class="container container-narrow">
+      <div style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 0.75rem;">
+        <a href="../index.html">Home</a> &gt; <a href="index.html">Calculators</a> &gt; <span>Calorie Calculator</span>
+      </div>
+      <h1 class="section-title">Daily Calorie &amp; TDEE Calculator</h1>
+      <p class="section-subtitle">
+        Scientifically estimate your Basal Metabolic Rate (BMR) and Total Daily Energy Expenditure (TDEE). Select your goal to receive a tailored calorie and macronutrient baseline.
+      </p>
+    </div>
+  </section>
+
+  <!-- Calculator Main Section -->
+  <main class="section" style="padding-top: 0;">
+    <div class="container container-narrow">
+      
+      <div class="calc-card">
+        <form id="calorieForm" novalidate>
+          
+          <!-- Gender Selection -->
+          <div class="form-group">
+            <label class="form-label">Biological Sex</label>
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" name="gender" value="male" checked> Male
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="gender" value="female"> Female
+              </label>
+            </div>
+            <div class="form-hint">Used for formula coefficient selection (Mifflin-St Jeor standard).</div>
+          </div>
+
+          <!-- Age, Height, Weight Grid -->
+          <div class="grid-3" style="margin-bottom: 1rem;">
+            <div class="form-group">
+              <label for="calAge" class="form-label">Age (Years)</label>
+              <input type="number" id="calAge" class="form-control" placeholder="e.g. 21" min="15" max="85" required>
+              <div class="form-error"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="calHeight" class="form-label">Height (cm)</label>
+              <input type="number" id="calHeight" class="form-control" placeholder="e.g. 175" min="120" max="230" required>
+              <div class="form-error"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="calWeight" class="form-label">Weight (kg)</label>
+              <input type="number" id="calWeight" class="form-control" placeholder="e.g. 70" min="35" max="200" step="0.1" required>
+              <div class="form-error"></div>
+            </div>
+          </div>
+
+          <!-- Activity Level -->
+          <div class="form-group">
+            <label for="calActivity" class="form-label">Daily Activity Level</label>
+            <select id="calActivity" class="form-control" required>
+              <option value="1.2">Sedentary (Desk job, minimal physical exercise)</option>
+              <option value="1.375" selected>Lightly Active (Gym training / brisk walking 1–3 days/week)</option>
+              <option value="1.55">Moderately Active (Structured lifting or cardio 3–5 days/week)</option>
+              <option value="1.725">Very Active (Heavy resistance training 6–7 days/week or labor job)</option>
+            </select>
+          </div>
+
+          <!-- Primary Fitness Goal -->
+          <div class="form-group">
+            <label class="form-label">Target Goal</label>
+            <div class="radio-group" style="flex-wrap: wrap;">
+              <label class="radio-label">
+                <input type="radio" name="goal" value="fat_loss" checked> Moderate Fat Loss (-400 kcal)
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="goal" value="maintenance"> Weight Maintenance (TDEE)
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="goal" value="muscle_gain"> Controlled Muscle Gain (+300 kcal)
+              </label>
+            </div>
+          </div>
+
+          <!-- Action Button -->
+          <div style="margin-top: 2rem;">
+            <button type="submit" class="btn btn-primary btn-block" style="padding: 1rem; font-size: 1.05rem;">
+              Calculate Daily Calories &amp; Macros
+            </button>
+          </div>
+
+        </form>
+
+        <!-- Dynamic Results Panel -->
+        <div id="calorieResults" class="results-panel" aria-live="polite">
+          <h2 style="font-size: 1.3rem; margin-bottom: 0.25rem;">Your Estimated Nutritional Profile</h2>
+          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+            Based on the Mifflin-St Jeor thermodynamic model:
+          </p>
+
+          <div class="results-grid">
+            <div class="metric-box">
+              <div class="metric-label">Basal Metabolic Rate</div>
+              <div id="resBMR" class="metric-val">0 kcal</div>
+              <div class="metric-sub">Caloric cost of staying alive at rest</div>
+            </div>
+
+            <div class="metric-box">
+              <div class="metric-label">Daily Maintenance (TDEE)</div>
+              <div id="resTDEE" class="metric-val">0 kcal</div>
+              <div class="metric-sub">Calories burned with activity</div>
+            </div>
+
+            <div class="metric-box" style="border-color: var(--primary); background-color: var(--primary-light);">
+              <div class="metric-label" style="color: var(--primary-dark);">Daily Calorie Target</div>
+              <div id="resTarget" class="metric-val" style="color: var(--primary-dark);">0 kcal</div>
+              <div class="metric-sub">Target for your chosen goal</div>
+            </div>
+          </div>
+
+          <h3 style="font-size: 1.1rem; margin-top: 1.5rem; margin-bottom: 0.75rem;">Recommended Macro Breakdown</h3>
+          <div class="results-grid">
+            <div class="metric-box">
+              <div class="metric-label">Daily Protein</div>
+              <div id="resProtein" class="metric-val" style="color: var(--accent);">0g</div>
+              <div class="metric-sub">~2.0g per kg of bodyweight</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-label">Daily Carbohydrates</div>
+              <div id="resCarbs" class="metric-val">0g</div>
+              <div class="metric-sub">Primary fuel for training sessions</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-label">Daily Fats</div>
+              <div id="resFats" class="metric-val">0g</div>
+              <div class="metric-sub">Essential for hormone production</div>
+            </div>
+          </div>
+
+          <div class="disclaimer-box" style="margin-top: 1.5rem;">
+            <strong>Important Educational Note:</strong> These figures are scientific estimates. Track your average weekly weight for 2–3 weeks. If weight does not trend in your intended direction, adjust calories upward or downward by 100–150 kcal.
+          </div>
+
+          <div style="margin-top: 1.5rem; text-align: center;">
+            <a href="../diet/protein-rich-indian-foods.html" class="btn btn-outline btn-sm">
+              Explore High-Protein Indian Foods to Meet This Target &rarr;
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Formula Documentation Section -->
+      <section class="section" style="padding-bottom: 1rem;">
+        <h2 style="font-size: 1.4rem; margin-bottom: 1rem;">How This Calculator Works (Formulas &amp; Methodology)</h2>
+        <p style="margin-bottom: 1rem;">
+          To ensure scientific integrity and academic transparency for MKT901, this calculator uses the peer-reviewed <strong>Mifflin-St Jeor Equation</strong>, recognized by the American Dietetic Association as the most accurate formula for estimating BMR in healthy adults without specialized laboratory calorimetry equipment:
+        </p>
+        <div class="table-wrapper">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Variable</th>
+                <th>Men Equation</th>
+                <th>Women Equation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>BMR Calculation</strong></td>
+                <td><code>10 &times; wt(kg) + 6.25 &times; ht(cm) - 5 &times; age + 5</code></td>
+                <td><code>10 &times; wt(kg) + 6.25 &times; ht(cm) - 5 &times; age - 161</code></td>
+              </tr>
+              <tr>
+                <td><strong>TDEE Calculation</strong></td>
+                <td colspan="2"><code>TDEE = BMR &times; Activity Multiplier (1.2 to 1.725)</code></td>
+              </tr>
+              <tr>
+                <td><strong>Deficit / Surplus</strong></td>
+                <td colspan="2">Fat Loss: <code>TDEE - 400 kcal</code> | Muscle Gain: <code>TDEE + 300 kcal</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size: 0.95rem; color: var(--text-muted);">
+          To learn how to translate these numbers into everyday Indian foods like roti, dal, paneer, and eggs, read our educational guide on <a href="../diet/understanding-calories.html">Demystifying Calories</a>.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>Another Reason to Get Fit</h3>
+          <p>An academic, evidence-grounded web project created for MKT901 – Web Marketing. Focused on progressive resistance training, rest intervals, and everyday Indian nutrition.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../fitness/index.html">Fitness Guides</a></li>
+            <li><a href="../diet/index.html">Diet &amp; Nutrition</a></li>
+            <li><a href="index.html">Calculators</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Tools</h4>
+          <ul class="footer-links">
+            <li><a href="calorie-calculator.html">Calorie Calculator</a></li>
+            <li><a href="body-fat-calculator.html">Body Fat % Calculator</a></li>
+            <li><a href="../fitness/rest-between-sets.html">Rest Intervals Guide</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Academic Info</h4>
+          <ul class="footer-links">
+            <li><a href="../about.html">Project Context</a></li>
+            <li><a href="../contact.html">Contact Form</a></li>
+            <li><a href="../disclaimer.html">Disclaimer</a></li>
+            <li><a href="../sitemap.xml">Sitemap</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Another Reason to Get Fit. Academic Task 1 Submission.</p>
+        <p>100% Client-side. No user health measurements are transmitted or stored.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/analytics.js"></script>
+  <script src="../assets/js/calculators.js"></script>
+</body>
+</html>

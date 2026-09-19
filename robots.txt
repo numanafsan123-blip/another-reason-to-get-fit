@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://numanafsan123-blip.github.io/another-reason-to-get-fit/sitemap.xml
