@@ -1,31 +1,17 @@
 /**
- * Another Reason to Get Fit - Google Analytics 4 (GA4) Architecture
+ * Another Reason to Get Fit - Google Analytics 4 (GA4) Event Tracking
  * MKT901 Web Marketing Academic Task 1: Measurement Framework
+ *
+ * The site-wide Google tag (gtag.js) is initialized in the <head> of
+ * every HTML page. This file contains only custom event tracking.
  */
 
-const GA_MEASUREMENT_ID = 'G-D0SLEX5TN0';
-
-window.dataLayer = window.dataLayer || [];
-function gtag() {
-  window.dataLayer.push(arguments);
-}
-
-if (GA_MEASUREMENT_ID) {
-  const script = document.createElement('script');
-  script.async = true;
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
-  document.head.appendChild(script);
-
-  gtag('js', new Date());
-  gtag('config', GA_MEASUREMENT_ID, {
-    send_page_view: true,
-    anonymize_ip: true,
-    cookie_flags: 'SameSite=None;Secure'
-  });
-  console.log(`[GA4] Initialized stream for ${GA_MEASUREMENT_ID}`);
-}
-
 function trackEvent(eventName, eventParams = {}) {
+  if (typeof gtag !== 'function') {
+    console.warn('[GA4] gtag is not available; event was not sent:', eventName);
+    return;
+  }
+
   gtag('event', eventName, eventParams);
   console.log(`[GA4 Event Fired]: ${eventName}`, eventParams);
 }
