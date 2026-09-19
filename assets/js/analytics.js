@@ -1,22 +1,16 @@
 /**
  * Another Reason to Get Fit - Google Analytics 4 (GA4) Architecture
  * MKT901 Web Marketing Academic Task 1: Measurement Framework
- * 
- * INSTRUCTIONS FOR USER:
- * Replace 'G-XXXXXXXXXX' below with your actual Google Analytics 4 Measurement ID
- * obtained from your GA4 Data Stream (Admin -> Data Streams -> Web).
  */
 
-const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX'; // <-- REPLACE WITH YOUR REAL GA4 MEASUREMENT ID
+const GA_MEASUREMENT_ID = 'G-D0SLEX5TN0';
 
-// 1. Initialize dataLayer & gtag
 window.dataLayer = window.dataLayer || [];
 function gtag() {
   window.dataLayer.push(arguments);
 }
 
-// Only inject the official Google Tag script if a real Measurement ID is configured
-if (GA_MEASUREMENT_ID && GA_MEASUREMENT_ID !== 'G-XXXXXXXXXX') {
+if (GA_MEASUREMENT_ID) {
   const script = document.createElement('script');
   script.async = true;
   script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
@@ -29,27 +23,17 @@ if (GA_MEASUREMENT_ID && GA_MEASUREMENT_ID !== 'G-XXXXXXXXXX') {
     cookie_flags: 'SameSite=None;Secure'
   });
   console.log(`[GA4] Initialized stream for ${GA_MEASUREMENT_ID}`);
-} else {
-  console.info('[GA4 Note] Running in development mode with placeholder GA_MEASUREMENT_ID. Events are logged to console.');
 }
 
-/**
- * Universal Event Dispatcher
- * @param {string} eventName - Semantic event name (e.g., 'calorie_calculated')
- * @param {Object} eventParams - Parameter payload (no PII)
- */
 function trackEvent(eventName, eventParams = {}) {
-  // Always push to dataLayer for debugging & GTM compatibility
   gtag('event', eventName, eventParams);
   console.log(`[GA4 Event Fired]: ${eventName}`, eventParams);
 }
 
-// 2. Automated Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
-  // A. In-Article CTA Tracking (Content Funnel)
   const ctaLinks = document.querySelectorAll('.article-cta a, [data-cta]');
   ctaLinks.forEach((link) => {
-    link.addEventListener('click', (e) => {
+    link.addEventListener('click', () => {
       const ctaText = link.innerText.trim() || 'CTA Button';
       const destination = link.getAttribute('href') || '';
       const articleTitle = document.querySelector('h1')?.innerText.trim() || document.title;
@@ -62,21 +46,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // B. Content Quality & Dwell Time: High Engagement Read
-  // Fires when a user stays on an article for >= 60 seconds AND scrolls past 75% depth
   const isArticlePage = document.querySelector('.article-body');
   if (isArticlePage) {
     let scrolledPast75 = false;
     let spent60Seconds = false;
     let eventFired = false;
 
-    // Timer check
     setTimeout(() => {
       spent60Seconds = true;
       checkAndFireEngagement();
     }, 60000);
 
-    // Scroll depth check
     window.addEventListener('scroll', () => {
       if (eventFired || scrolledPast75) return;
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -101,7 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // C. Track Calculator Page Views
   if (window.location.pathname.includes('calorie-calculator')) {
     trackEvent('calculator_view', { calculator_type: 'calorie_tdee' });
   } else if (window.location.pathname.includes('body-fat-calculator')) {
