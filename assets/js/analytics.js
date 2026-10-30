@@ -41,7 +41,13 @@ if (GA_MEASUREMENT_ID && GA_MEASUREMENT_ID !== 'G-XXXXXXXXXX') {
 function trackEvent(eventName, eventParams = {}) {
   // Always push to dataLayer for debugging & GTM compatibility
   gtag('event', eventName, eventParams);
-  console.log(`[GA4 Event Fired]: ${eventName}`, eventParams);
+
+  // Bridge custom event to Microsoft Clarity for session replay filtering
+  if (typeof window.clarity === 'function') {
+    window.clarity('event', eventName);
+  }
+
+  console.log(`[Analytics Event Fired]: ${eventName}`, eventParams);
 }
 
 // 2. Automated Event Listeners
